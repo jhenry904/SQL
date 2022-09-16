@@ -1,0 +1,25 @@
+--Create a Meat Market database
+
+CREATE TABLE butchery_shop (id INTEGER PRIMARY KEY, name TEXT, stock INTEGER, meat TEXT, Fat_Percentage INTEGER);
+
+INSERT INTO butchery_shop VALUES (1, 'Pork Loin', '5', 'pork', '23');
+INSERT INTO butchery_shop VALUES (2, 'Pork Shoulder', '5', 'pork', '25');
+INSERT INTO butchery_shop VALUES (3, 'Pork Belly', '5', 'pork', '27');
+INSERT INTO butchery_shop VALUES (4, 'Chicken Breast', '5', 'chicken', '22');
+INSERT INTO butchery_shop VALUES (5, 'Chicken Thigh', '5', 'chicken', '25');
+INSERT INTO butchery_shop VALUES (6, 'Chicken Winglettes', '5', 'chicken', '24');
+INSERT INTO butchery_shop VALUES (7, 'Whole Chicken', '5', 'chicken', '26');
+INSERT INTO butchery_shop VALUES (8, 'Ground Pork', '5', 'pork', '29');
+INSERT INTO butchery_shop VALUES (9, 'Ground Chicken', '4', 'chicken', '25');
+INSERT INTO butchery_shop VALUES (10, 'Ground beef', '5', 'beef', '24');
+INSERT INTO butchery_shop VALUES (11, 'Ribeye beef', '3', 'beef', '27');
+INSERT INTO butchery_shop VALUES (12, 'New York Strip beef', '5', 'beef', '25');
+INSERT INTO butchery_shop VALUES (13,'Filet Mignon beef', '5', 'beef', '27');
+INSERT INTO butchery_shop VALUES (14, 'Tomahawk beef', '5', 'beef', '25');
+INSERT INTO butchery_shop VALUES (15, 'Texas Wagyu beef', '5', 'beef', '25');
+
+--Cut of Meat ordered by Fat Percentage
+SELECT * FROM butchery_shop ORDER BY Fat_Percentage;
+
+--Total stock available for purchase
+SELECT SUM(stock) FROM butchery_shop;
