@@ -1,0 +1,44 @@
+/* Create table about the people and what they do here */
+CREATE TABLE persons (id INTEGER PRIMARY KEY, fullname TEXT, age INTEGER, couple INTEGER);
+INSERT INTO persons (fullname, age, couple) VALUES ("Ariana Grande", 29, 2);
+INSERT INTO persons (fullname, age, couple) VALUES ("A$AP Rocky", 34, 3);
+INSERT INTO persons (fullname, age, couple) VALUES ("Chris Brown", 33, 4);
+INSERT INTO persons (fullname, age, couple) VALUES ("Rihanna", 34, 5);
+INSERT INTO persons (fullname, age, couple) VALUES ("Drake", 35, 6);
+INSERT INTO persons (fullname, age, couple) VALUES ("Nicki Minaj", 39, NULL);
+
+CREATE TABLE songs (id INTEGER PRIMARY KEY, songid INTEGER, title TEXT, records_sold INTEGER);
+INSERT INTO songs (songid, title, records_sold) VALUES (1, "positions", 1000000000);
+INSERT INTO songs (songid, title, records_sold) VALUES (1, "7 Rings", 2000000000);
+INSERT INTO songs (songid,title, records_sold) VALUES (2, "Praise the Lord", 850000000);
+INSERT INTO songs (songid, title, records_sold) VALUES (2, "F%$king Problems", 500000000);
+INSERT INTO songs (songid, title, records_sold) VALUES (3, "Under the Influence", 300000000);
+INSERT INTO songs (songid, title, records_sold) VALUES (3, "No Guidance", 800000000);
+INSERT INTO songs (songid, title, records_sold) VALUES (4, "Umbrella", 900000000);
+INSERT INTO songs (songid, title, records_sold) VALUES (4, "Love on the Brain", 950000000);
+INSERT INTO songs (songid, title, records_sold) VALUES (5, "Jimmy Cooks", 250000000);
+INSERT INTO songs (songid, title, records_sold) VALUES (6, "Side to Side", 500000000);
+INSERT INTO songs (songid, title, records_sold) VALUES (6, "Bang Bang", 1000000000);
+
+CREATE TABLE features (id INTEGER PRIMARY KEY, person1_id INTEGER, person2_id INTEGER);
+INSERT INTO features (person1_id, person2_id) VALUES (1, 6);
+INSERT INTO features (person1_id, person2_id) VALUES (5, 6);
+INSERT INTO features (person1_id, person2_id) VALUES (2, 5);
+
+--Selecting Artist Name, Song Title, and Amount of Records Sold from Each Title from Joining Persons Table and Songs Table Where Records Sold are Ordered from Largest Volume to Lowest Volume
+SELECT persons.fullname, songs.title, songs.records_sold FROM persons
+JOIN songs
+ON songs.songid = persons.id
+GROUP BY songs.records_sold ORDER BY songs.records_sold DESC
+
+--Selecting Artist Name and the Artist that they are Featured with
+SELECT a.fullname, b.fullname FROM features
+JOIN persons a
+ON a.id = features.person1_id
+JOIN persons b
+ON b.id = features.person2_id;
+
+--Selecting Artist Names and their Couples
+SELECT persons.fullname, couple.fullname FROM persons
+LEFT OUTER JOIN persons couple
+ON persons.couple = couple.id
